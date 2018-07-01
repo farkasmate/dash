@@ -3,6 +3,7 @@ package y2k.dash.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import org.jetbrains.anko.doAsync
 import y2k.dash.data.Dashlet
 
 class MainViewModel : ViewModel() {
@@ -39,5 +40,12 @@ class MainViewModel : ViewModel() {
         list.add(Dashlet(title = "Y", message = "yankee"))
         list.add(Dashlet(title = "Z", message = "zulu"))
         _dashlets.value = list
+
+        doAsync {
+            Thread.sleep(2000)
+            var dashletList = _dashlets.value as ArrayList<Dashlet>
+            dashletList[0].message = "Updated"
+            _dashlets.postValue(dashletList)
+        }
     }
 }

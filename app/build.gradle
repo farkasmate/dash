@@ -32,4 +32,5 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
     implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha3'
+    implementation 'org.jetbrains.anko:anko-commons:0.10.5'
 }
