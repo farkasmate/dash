@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.main_fragment.*
 import y2k.dash.R
-import y2k.dash.data.DashletAdapter
 
 class MainFragment : Fragment() {
 
