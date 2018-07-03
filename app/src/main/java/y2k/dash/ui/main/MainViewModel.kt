@@ -1,12 +1,16 @@
 package y2k.dash.ui.main
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import org.jetbrains.anko.doAsync
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import org.json.JSONObject
 import y2k.dash.data.Dashlet
+import y2k.dash.utils.RequestQueueSingleton
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _dashlets = MutableLiveData<List<Dashlet>>()
     val dashlets: LiveData<List<Dashlet>>
         get() = _dashlets
@@ -41,11 +45,19 @@ class MainViewModel : ViewModel() {
         list.add(Dashlet(title = "Z", message = "zulu"))
         _dashlets.value = list
 
-        doAsync {
-            Thread.sleep(2000)
-            var dashletList = _dashlets.value as ArrayList<Dashlet>
-            dashletList[0].message = "Updated"
-            _dashlets.postValue(dashletList)
-        }
+        val testRequest = JsonObjectRequest(
+                "https://gist.githubusercontent.com/farkasmate/386fbd6d9328713e525b9742244c1695/raw/e69c0319c7a1b80956879c62220fc89bae4169f1/dash_test_json_01.json",
+                null,
+                Response.Listener<JSONObject> { response ->
+                    _dashlets.value?.get(0)?.message = response.getString("message")
+                    _dashlets.value = _dashlets.value
+                },
+                Response.ErrorListener {
+                    _dashlets.value?.get(0)?.message = "Failed"
+                    _dashlets.value = _dashlets.value
+                }
+        )
+
+        RequestQueueSingleton.getInstance(application).addToRequestQueue(testRequest)
     }
 }
