@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_fragment.*
 import y2k.dash.R
+import y2k.dash.data.Dashlet
 
 class MainFragment : Fragment() {
 
@@ -38,6 +39,16 @@ class MainFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = viewAdapter
+
+        handleIntent()
     }
 
+    private fun handleIntent() {
+        // TODO: Handle intent only once (not on screen rotate)
+        val intentData = activity?.intent?.data
+        if (intentData != null) {
+            val url = intentData.toString().replace("dashlet://", "https://")
+            viewModel.addDashlet(Dashlet(url, title = "new dashlet", message = url))
+        }
+    }
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import org.json.JSONObject
@@ -11,6 +12,7 @@ import y2k.dash.data.Dashlet
 import y2k.dash.utils.RequestQueueSingleton
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
+    private val requestQueue = RequestQueueSingleton.getInstance(application).requestQueue
     private val _dashlets = MutableLiveData<List<Dashlet>>()
     val dashlets: LiveData<List<Dashlet>>
         get() = _dashlets
@@ -44,20 +46,33 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         list.add(Dashlet(title = "Y", message = "yankee"))
         list.add(Dashlet(title = "Z", message = "zulu"))
         _dashlets.value = list
+    }
 
-        val testRequest = JsonObjectRequest(
-                "https://gist.githubusercontent.com/farkasmate/386fbd6d9328713e525b9742244c1695/raw/e69c0319c7a1b80956879c62220fc89bae4169f1/dash_test_json_01.json",
+    private fun updateDashlet(dashlet: Dashlet) {
+        val dashletList = _dashlets.value as ArrayList<Dashlet>
+        // TODO: Error handling
+        val index = dashletList.indexOf(dashlet)
+        val updateRequest = JsonObjectRequest(
+                dashlet.url,
                 null,
                 Response.Listener<JSONObject> { response ->
-                    _dashlets.value?.get(0)?.message = response.getString("message")
+                    _dashlets.value?.get(index)?.title = response.getString("title")
+                    _dashlets.value?.get(index)?.message = response.getString("message")
                     _dashlets.value = _dashlets.value
                 },
                 Response.ErrorListener {
-                    _dashlets.value?.get(0)?.message = "Failed"
+                    _dashlets.value?.get(index)?.message = "Update failed"
                     _dashlets.value = _dashlets.value
                 }
         )
 
-        RequestQueueSingleton.getInstance(application).addToRequestQueue(testRequest)
+        requestQueue.add(updateRequest)
+    }
+
+    fun addDashlet(dashlet: Dashlet) {
+        val dashletList = _dashlets.value as ArrayList<Dashlet>
+        dashletList.add(0, dashlet)
+        _dashlets.value = dashletList
+        updateDashlet(dashlet)
     }
 }
