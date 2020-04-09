@@ -1,0 +1,17 @@
+*.iml
+*.swp
+.DS_Store
+.dockerignore
+.externalNativeBuild
+.git
+.gitignore
+.gradle
+/*.log
+/.idea
+/app/build
+/build
+/captures
+/local.properties
+Dockerfile
+README.md
+docker-compose.yaml
