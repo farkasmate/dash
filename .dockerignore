@@ -11,6 +11,7 @@
 /app/build
 /build
 /captures
+/fastlane
 /local.properties
 Dockerfile
 README.md

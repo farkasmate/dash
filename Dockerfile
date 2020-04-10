@@ -1,6 +1,8 @@
-ARG JDK_VERSION=11-stretch
+ARG JDK_VERSION=11-buster
+ARG RUBY_VERSION=2.5-buster
 
-FROM openjdk:${JDK_VERSION} AS dependencies
+# android
+FROM openjdk:${JDK_VERSION} AS android
 
 ENV ANDROID_HOME=/android/
 
@@ -22,15 +24,33 @@ ADD . .
 
 RUN ./gradlew --no-daemon --console plain --warning-mode all :app:processDebugResources
 
+# fastlane
+FROM ruby:${RUBY_VERSION} AS fastlane
+
+WORKDIR /bundle/
+
+ADD Gemfile .
+ADD Gemfile.lock .
+
+RUN bundle install
+
+# build
 FROM openjdk:${JDK_VERSION} AS build
 
 ENV ANDROID_HOME=/android/
+ENV LANG=en_US.UTF-8
 
-COPY --from=dependencies /android /android
-COPY --from=dependencies /root/.gradle /home/gradle/.gradle
+RUN apt-get -y update && \
+    apt-get install -y ruby && \
+    gem install bundler -v '~> 1' && \
+    useradd --create-home --shell /bin/bash gradle
 
-RUN useradd --shell /bin/bash gradle && \
-    chown -R gradle:gradle /home/gradle
+ENV GEM_HOME=/usr/local/bundle
+
+COPY --from=android /android /android
+COPY --from=android --chown=gradle:gradle /root/.gradle /home/gradle/.gradle
+
+COPY --from=fastlane /usr/local/bundle /usr/local/bundle
 
 USER gradle:gradle
 WORKDIR /build/
