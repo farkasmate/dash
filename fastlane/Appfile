@@ -1,0 +1,2 @@
+#json_key_file("fastlane/secret.json") # Export as SUPPLY_JSON_KEY_DATA environment variable
+package_name("y2k.dash")

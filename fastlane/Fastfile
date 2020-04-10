@@ -1,0 +1,19 @@
+# vim: set syntax=ruby
+
+skip_docs
+opt_out_usage
+
+default_platform(:android)
+
+platform :android do
+  desc 'Runs all the tests'
+  lane :test do
+    gradle(task: 'test')
+  end
+
+  desc 'Submit a new Beta Build to Google Play'
+  lane :beta do
+    gradle(task: 'assemble', build_type: 'Release')
+    upload_to_play_store(track: 'beta')
+  end
+end

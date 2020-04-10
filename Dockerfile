@@ -43,6 +43,7 @@ ENV LANG=en_US.UTF-8
 RUN apt-get -y update && \
     apt-get install -y ruby && \
     gem install bundler -v '~> 1' && \
+    ln -s /usr/lib/x86_64-linux-gnu/libruby-2.5.so.2.5 /lib/x86_64-linux-gnu/libruby.so.2.5 && \
     useradd --create-home --shell /bin/bash gradle
 
 ENV GEM_HOME=/usr/local/bundle
@@ -55,4 +56,4 @@ COPY --from=fastlane /usr/local/bundle /usr/local/bundle
 USER gradle:gradle
 WORKDIR /build/
 
-CMD ./gradlew --console plain --warning-mode all build
+CMD bundle exec fastlane test
