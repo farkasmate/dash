@@ -44,11 +44,11 @@ class MainFragment : Fragment() {
     }
 
     private fun handleIntent() {
-        // TODO: Handle intent only once (not on screen rotate)
         val intentData = activity?.intent?.data
         if (intentData != null) {
             val url = intentData.toString().replace("dashlet://", "https://")
             viewModel.addDashlet(Dashlet(url, title = "new dashlet", message = url))
+            activity?.intent?.data = null
         }
     }
 }
