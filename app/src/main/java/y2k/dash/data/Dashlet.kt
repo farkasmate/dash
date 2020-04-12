@@ -1,3 +1,12 @@
 package y2k.dash.data
 
-data class Dashlet(var url: String = "", var title: String, var message: String)
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class Dashlet(
+        @PrimaryKey var url: String,
+        @ColumnInfo var title: String,
+        @ColumnInfo var message: String
+)

@@ -1,12 +1,12 @@
 package y2k.dash.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_fragment.*
 import y2k.dash.R
@@ -28,7 +28,8 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val factory = ViewModelProvider.AndroidViewModelFactory(activity!!.application)
+        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
 
         viewModel.dashlets.observe(this, Observer {
             it?.run {
@@ -47,7 +48,7 @@ class MainFragment : Fragment() {
         val intentData = activity?.intent?.data
         if (intentData != null) {
             val url = intentData.toString().replace("dashlet://", "https://")
-            viewModel.addDashlet(Dashlet(url, title = "new dashlet", message = url))
+            viewModel.addDashlet(Dashlet(url = url, title = "new dashlet", message = url))
             activity?.intent?.data = null
         }
     }
