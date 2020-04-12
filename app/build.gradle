@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29 // Q
     defaultConfig {
         applicationId "y2k.dash"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 21 // LOLLIPOP
+        targetSdkVersion 29 // Q
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

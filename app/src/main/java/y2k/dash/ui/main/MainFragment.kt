@@ -45,7 +45,7 @@ class MainFragment : Fragment() {
         val intentData = activity?.intent?.data
         if (intentData != null) {
             val url = intentData.toString().replace("dashlet://", "https://")
-            viewModel.addDashlet(Dashlet(url = url, title = "new dashlet", message = url))
+            viewModel.addDashlet(Dashlet(url = url, title = "new dashlet", message = "loading..."))
             activity?.intent?.data = null
         }
     }

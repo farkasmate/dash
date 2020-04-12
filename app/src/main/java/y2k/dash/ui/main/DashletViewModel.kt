@@ -1,7 +1,6 @@
 package y2k.dash.ui.main
 
 import android.app.Application
-import android.content.pm.PackageManager
 import androidx.lifecycle.*
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest

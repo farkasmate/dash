@@ -1,6 +1,5 @@
 package y2k.dash.ui.main
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,10 +21,6 @@ class DashletAdapter : RecyclerView.Adapter<DashletAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.view.titleTextView.text = dashlets[position].title
         holder.view.messageTextView.text = dashlets[position].message
-
-        val maxOpacity = 200
-        val gradedColor = Color.argb(maxOpacity*position/dashlets.size, 1, 1, 1)
-        holder.view.setBackgroundColor(gradedColor)
     }
 
     override fun getItemCount() = dashlets.size
