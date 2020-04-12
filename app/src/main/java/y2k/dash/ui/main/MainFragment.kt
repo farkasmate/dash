@@ -38,6 +38,9 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = viewAdapter
 
+        swipe.setOnRefreshListener { viewModel.refreshDashlets() }
+        viewModel.addOnRefreshFinishedListener { swipe.isRefreshing = false }
+
         handleIntent()
     }
 
