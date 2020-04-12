@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_fragment.*
 import y2k.dash.R
@@ -17,7 +17,7 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by activityViewModels<DashletViewModel>()
     private var viewAdapter: DashletAdapter = DashletAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -28,10 +28,7 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val factory = ViewModelProvider.AndroidViewModelFactory(activity!!.application)
-        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
-
-        viewModel.dashlets.observe(this, Observer {
+        viewModel.dashlets.observe(viewLifecycleOwner, Observer {
             it?.run {
                 viewAdapter.setDashlets(it)
             }

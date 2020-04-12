@@ -11,7 +11,7 @@ import y2k.dash.data.Dashlet
 import y2k.dash.data.DashletDatabase
 import y2k.dash.utils.RequestQueueSingleton
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class DashletViewModel(application: Application) : AndroidViewModel(application) {
     private val version = application.packageManager.getPackageInfo(application.packageName, 0).versionName
 
     private val requestQueue = RequestQueueSingleton.getInstance(application).requestQueue
