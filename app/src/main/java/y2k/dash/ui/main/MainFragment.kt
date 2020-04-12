@@ -13,7 +13,6 @@ import y2k.dash.R
 import y2k.dash.data.Dashlet
 
 class MainFragment : Fragment() {
-
     companion object {
         fun newInstance() = MainFragment()
     }
@@ -28,6 +27,7 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         val factory = ViewModelProvider.AndroidViewModelFactory(activity!!.application)
         viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
 

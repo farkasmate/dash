@@ -8,6 +8,7 @@ interface DashletDao {
     @Query("SELECT * FROM Dashlet")
     fun getAll(): LiveData<List<Dashlet>>
 
+    // TODO: IGNORE/ABORT?
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(dashlet: Dashlet)
 

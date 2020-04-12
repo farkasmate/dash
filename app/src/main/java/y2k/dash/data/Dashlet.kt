@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Dashlet(
-        @PrimaryKey var url: String,
-        @ColumnInfo var title: String,
-        @ColumnInfo var message: String
+    @PrimaryKey var url: String,
+    @ColumnInfo var title: String,
+    @ColumnInfo var message: String
 )
