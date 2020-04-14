@@ -39,7 +39,7 @@ class MainFragment : Fragment() {
         recyclerView.adapter = viewAdapter
 
         swipe.setOnRefreshListener { viewModel.refreshDashlets() }
-        viewModel.addOnRefreshFinishedListener { swipe.isRefreshing = false }
+        viewModel.setOnRefreshFinishedListener { swipe.isRefreshing = false }
 
         handleIntent()
     }

@@ -67,7 +67,7 @@ class DashletViewModel(application: Application) : AndroidViewModel(application)
         dashlets.value?.forEach { dashlet -> refreshDashlet(dashlet) }
     }
 
-    fun addOnRefreshFinishedListener(listener: () -> Unit) {
-        requestQueue.addRequestFinishedListener { listener() }
+    fun setOnRefreshFinishedListener(listener: () -> Unit) {
+        requestQueue.setOnFinishedListener { listener() }
     }
 }

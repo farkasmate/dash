@@ -15,15 +15,25 @@ class RequestQueueSingleton constructor(context: Context) {
         }
     }
 
-    private val requestQueue: RequestQueue by lazy {
-        Volley.newRequestQueue(context.applicationContext)
+    private val requestQueue: RequestQueue = Volley.newRequestQueue(context.applicationContext)
+
+    private var onFinishedListener: (() -> Unit)? = null
+    private var lastSequence: Int = 0
+
+    init {
+        requestQueue.addRequestFinishedListener<Unit> { request ->
+            if (request?.sequence == lastSequence) {
+                onFinishedListener?.invoke()
+            }
+        }
     }
 
     fun <T> add(request: Request<T>) {
         requestQueue.add(request)
+        lastSequence = request.sequence
     }
 
-    fun addRequestFinishedListener(listener: () -> Unit) {
-        requestQueue.addRequestFinishedListener<Unit> { listener() }
+    fun setOnFinishedListener(listener: () -> Unit) {
+        onFinishedListener = listener
     }
 }
