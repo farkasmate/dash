@@ -70,4 +70,8 @@ class DashletViewModel(application: Application) : AndroidViewModel(application)
     fun setOnRefreshFinishedListener(listener: () -> Unit) {
         requestQueue.setOnFinishedListener { listener() }
     }
+
+    fun swapDashlets(from: Int, to: Int) {
+        viewModelScope.launch { dao.swapDashlets(dashlets.value!![from], dashlets.value!![to]) }
+    }
 }

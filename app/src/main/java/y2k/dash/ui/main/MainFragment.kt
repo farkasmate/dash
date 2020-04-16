@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_fragment.*
 import y2k.dash.R
@@ -28,10 +29,8 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.dashlets.observe(viewLifecycleOwner, Observer {
-            it?.run {
-                viewAdapter.setDashlets(it)
-            }
+        viewModel.dashlets.observe(viewLifecycleOwner, Observer { dashlets ->
+            viewAdapter.setDashlets(dashlets)
         })
 
         recyclerView.setHasFixedSize(true)
@@ -40,6 +39,9 @@ class MainFragment : Fragment() {
 
         swipe.setOnRefreshListener { viewModel.refreshDashlets() }
         viewModel.setOnRefreshFinishedListener { swipe.isRefreshing = false }
+
+        val h = ItemTouchHelper(TouchHelperCallback(viewModel))
+        h.attachToRecyclerView(recyclerView)
 
         handleIntent()
     }

@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class Dashlet(
     @PrimaryKey var url: String,
     @ColumnInfo var title: String,
-    @ColumnInfo var message: String
+    @ColumnInfo var message: String,
+    @ColumnInfo var position: Int = -1
 )

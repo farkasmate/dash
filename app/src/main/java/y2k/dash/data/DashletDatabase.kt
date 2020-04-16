@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(Dashlet::class), version = 1)
+@Database(entities = [Dashlet::class], version = 2)
 abstract class DashletDatabase : RoomDatabase() {
     abstract fun dashletDao(): DashletDao
 
@@ -17,7 +17,7 @@ abstract class DashletDatabase : RoomDatabase() {
             INSTANCE ?: Room.databaseBuilder(
                     context,
                     DashletDatabase::class.java, "Dashlet"
-            ).build()
+            ).addMigrations(*Migrations.all).build()
         }
     }
 }
