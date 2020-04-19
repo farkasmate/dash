@@ -13,8 +13,8 @@ class Migrations {
     companion object {
         val all = arrayOf(
                 StringMigration(1, 2,
-                        "ALTER TABLE Dashlet ADD COLUMN position INTEGER NOT NULL DEFAULT 0",
-                        "UPDATE Dashlet SET position=rowid")
+                        "ALTER TABLE `Dashlet` ADD COLUMN `position` INTEGER NOT NULL DEFAULT 0",
+                        "UPDATE `Dashlet` SET `position`=(ROWID - 1)")
         )
     }
 }

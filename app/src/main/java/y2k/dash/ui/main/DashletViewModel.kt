@@ -8,16 +8,18 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import y2k.dash.data.Dashlet
 import y2k.dash.data.DashletDatabase
+import y2k.dash.data.DashletRepository
 import y2k.dash.utils.RequestQueueSingleton
 import java.net.URI
 
+// FIXME: Remove Application reference from ViewModel
 class DashletViewModel(application: Application) : AndroidViewModel(application) {
     private val version = application.packageManager.getPackageInfo(application.packageName, 0).versionName
 
     private val requestQueue = RequestQueueSingleton.getInstance(application)
-    private val dao = DashletDatabase.getInstance(application).dashletDao()
+    private val repo = DashletRepository(DashletDatabase.getInstance(application).dashletDao())
 
-    val dashlets = dao.getAll()
+    val dashlets = repo.getAll()
 
 //    init {
 //        addSettings()
@@ -25,16 +27,16 @@ class DashletViewModel(application: Application) : AndroidViewModel(application)
 
     private fun addSettings() {
         viewModelScope.launch {
-            dao.dropDashlets()
-            dao.insert(Dashlet("setting://version", "App version", version))
-            dao.insert(Dashlet("setting://test/1", "Test 1", "1"))
-            dao.insert(Dashlet("setting://test/2", "Test 2", "2"))
-            dao.insert(Dashlet("setting://test/3", "Test 3", "3"))
-            dao.insert(Dashlet("setting://test/4", "Test 4", "4"))
-            dao.insert(Dashlet("setting://test/5", "Test 5", "5"))
-            dao.insert(Dashlet("setting://test/6", "Test 6", "6"))
-            dao.insert(Dashlet("setting://test/7", "Test 7", "7"))
-            dao.insert(Dashlet("setting://test/8", "Test 8", "8"))
+            repo.dropDashlets()
+            repo.insert(Dashlet("setting://version", "App version", version))
+            repo.insert(Dashlet("setting://test/1", "Test 1", "1"))
+            repo.insert(Dashlet("setting://test/2", "Test 2", "2"))
+            repo.insert(Dashlet("setting://test/3", "Test 3", "3"))
+            repo.insert(Dashlet("setting://test/4", "Test 4", "4"))
+            repo.insert(Dashlet("setting://test/5", "Test 5", "5"))
+            repo.insert(Dashlet("setting://test/6", "Test 6", "6"))
+            repo.insert(Dashlet("setting://test/7", "Test 7", "7"))
+            repo.insert(Dashlet("setting://test/8", "Test 8", "8"))
         }
     }
 
@@ -47,11 +49,11 @@ class DashletViewModel(application: Application) : AndroidViewModel(application)
                 Response.Listener<JSONObject> { response ->
                     dashlet.title = response.getString("title")
                     dashlet.message = response.getString("message")
-                    viewModelScope.launch { dao.update(dashlet) }
+                    viewModelScope.launch { repo.update(dashlet) }
                 },
                 Response.ErrorListener {
                     dashlet.message = "Update failed"
-                    viewModelScope.launch { dao.update(dashlet) }
+                    viewModelScope.launch { repo.update(dashlet) }
                 }
         )
 
@@ -59,7 +61,7 @@ class DashletViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun addDashlet(dashlet: Dashlet) {
-        viewModelScope.launch { dao.insert(dashlet) }
+        viewModelScope.launch { repo.insert(dashlet) }
         refreshDashlet(dashlet)
     }
 
@@ -71,7 +73,7 @@ class DashletViewModel(application: Application) : AndroidViewModel(application)
         requestQueue.setOnFinishedListener { listener() }
     }
 
-    fun swapDashlets(from: Int, to: Int) {
-        viewModelScope.launch { dao.swapDashlets(dashlets.value!![from], dashlets.value!![to]) }
+    fun moveDashlet(from: Int, to: Int) {
+        viewModelScope.launch { repo.moveDashlet(from, to) }
     }
 }

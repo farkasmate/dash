@@ -40,8 +40,8 @@ class MainFragment : Fragment() {
         swipe.setOnRefreshListener { viewModel.refreshDashlets() }
         viewModel.setOnRefreshFinishedListener { swipe.isRefreshing = false }
 
-        val h = ItemTouchHelper(TouchHelperCallback(viewModel))
-        h.attachToRecyclerView(recyclerView)
+        val touchHelper = ItemTouchHelper(DashletTouchHelper(viewModel))
+        touchHelper.attachToRecyclerView(recyclerView)
 
         handleIntent()
     }

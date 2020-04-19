@@ -1,23 +1,38 @@
 package y2k.dash.ui.main
 
-import android.util.Log
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class TouchHelperCallback(private val viewModel: DashletViewModel) : ItemTouchHelper.SimpleCallback(
+class DashletTouchHelper(private val viewModel: DashletViewModel) : ItemTouchHelper.SimpleCallback(
         ItemTouchHelper.UP or ItemTouchHelper.DOWN,
         ItemTouchHelper.RIGHT
 ) {
+    private var startingPosition: Int? = null
+    private var endPosition: Int? = null
+
     override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
         val adapter = recyclerView.adapter as DashletAdapter
         val from = viewHolder.adapterPosition
         val to = target.adapterPosition
 
-        // FIXME: This stops the dragging immediately
+        if (startingPosition == null)
+            startingPosition = from
+
+        endPosition = to
+
         adapter.notifyItemMoved(from, to)
-        viewModel.swapDashlets(from, to)
-        Log.i("Moved", "$from to $to")
         return true
+    }
+
+    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+        if (startingPosition == endPosition) return
+        if (startingPosition == null || endPosition == null) return
+
+        viewModel.moveDashlet(startingPosition!!, endPosition!!)
+        startingPosition = null
+        endPosition = null
+
+        super.clearView(recyclerView, viewHolder)
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {}
