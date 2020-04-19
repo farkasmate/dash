@@ -1,0 +1,5 @@
+- Fix handling dashlet links multiple times
+- Persist dashlets locally
+- Update UI
+- Refresh on swipe
+- Drag and drop support
