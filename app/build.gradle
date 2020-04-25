@@ -9,8 +9,8 @@ android {
         applicationId "y2k.dash"
         minSdkVersion 21 // LOLLIPOP
         targetSdkVersion 29 // Q
-        versionCode 3
-        versionName "1.1"
+        versionCode 4
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
