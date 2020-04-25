@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_fragment.*
 import y2k.dash.R
 import y2k.dash.data.Dashlet
@@ -34,7 +33,6 @@ class MainFragment : Fragment() {
         })
 
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = viewAdapter
 
         swipe.setOnRefreshListener { viewModel.refreshDashlets() }

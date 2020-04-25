@@ -50,7 +50,7 @@ interface DashletDao {
         val dashlets = getRange(start, end)
 
         if (dashlets.size != abs(from - to) + 1) {
-            Log.e("Dash", "Moving wrong range of dashlets")
+            Log.e(this.toString(), "Moving wrong range of dashlets: $from..$to")
             return
         }
 

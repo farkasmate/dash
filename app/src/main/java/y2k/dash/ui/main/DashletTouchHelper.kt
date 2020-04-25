@@ -1,10 +1,11 @@
 package y2k.dash.ui.main
 
+import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 class DashletTouchHelper(private val viewModel: DashletViewModel) : ItemTouchHelper.SimpleCallback(
-        ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+        ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT,
         ItemTouchHelper.RIGHT
 ) {
     private var startingPosition: Int? = null
@@ -24,7 +25,19 @@ class DashletTouchHelper(private val viewModel: DashletViewModel) : ItemTouchHel
         return true
     }
 
+    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+        if (isCurrentlyActive) {
+            val dashletViewHolder = viewHolder as DashletAdapter.ViewHolder
+            dashletViewHolder.startMoveAnimation()
+        }
+
+        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+    }
+
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+        val dashletViewHolder = viewHolder as DashletAdapter.ViewHolder
+        dashletViewHolder.stopMoveAnimation()
+
         if (startingPosition == endPosition) return
         if (startingPosition == null || endPosition == null) return
 

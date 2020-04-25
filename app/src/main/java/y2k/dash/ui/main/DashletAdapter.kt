@@ -4,17 +4,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.main_dashlet.view.*
+import kotlinx.android.synthetic.main.card_dashlet.view.*
 import y2k.dash.R
 import y2k.dash.data.Dashlet
 
 class DashletAdapter : RecyclerView.Adapter<DashletAdapter.ViewHolder>() {
     private var dashlets: List<Dashlet> = ArrayList()
 
-    class ViewHolder(val view: View): RecyclerView.ViewHolder(view)
+    class ViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+        fun startMoveAnimation() { view.alpha = 0.75f }
+        fun stopMoveAnimation() { view.alpha = 1.0f }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val dashletView = LayoutInflater.from(parent.context).inflate(R.layout.main_dashlet, parent, false)
+        val dashletView = LayoutInflater.from(parent.context).inflate(R.layout.card_dashlet, parent, false)
         return ViewHolder(dashletView)
     }
 
