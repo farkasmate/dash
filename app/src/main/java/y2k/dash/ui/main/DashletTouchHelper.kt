@@ -26,7 +26,7 @@ class DashletTouchHelper(private val viewModel: DashletViewModel) : ItemTouchHel
     }
 
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
-        if (isCurrentlyActive) {
+        if (actionState == ItemTouchHelper.ACTION_STATE_DRAG && isCurrentlyActive) {
             val dashletViewHolder = viewHolder as DashletAdapter.ViewHolder
             dashletViewHolder.startMoveAnimation()
         }
