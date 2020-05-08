@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_dashlet.view.*
 import y2k.dash.R
-import y2k.dash.data.Dashlet
+import y2k.dash.shared.data.Dashlet
 
 class DashletAdapter : RecyclerView.Adapter<DashletAdapter.ViewHolder>() {
     private var dashlets: List<Dashlet> = ArrayList()

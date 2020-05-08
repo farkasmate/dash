@@ -1,4 +1,4 @@
-package y2k.dash.data
+package y2k.dash.shared.data
 
 import android.content.Context
 import androidx.room.Database
@@ -13,7 +13,8 @@ abstract class DashletDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: DashletDatabase? = null
 
-        fun getInstance(context: Context) = INSTANCE ?: synchronized(this) {
+        fun getInstance(context: Context) = INSTANCE
+                ?: synchronized(this) {
             INSTANCE ?: Room.databaseBuilder(
                     context,
                     DashletDatabase::class.java, "Dashlet"

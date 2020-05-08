@@ -5,7 +5,7 @@ import android.util.Log
 import com.google.android.gms.wearable.PutDataMapRequest
 import com.google.android.gms.wearable.PutDataRequest
 import com.google.android.gms.wearable.Wearable
-import y2k.dash.data.Dashlet
+import y2k.dash.shared.data.Dashlet
 import y2k.dash.shared.DashletKeys
 
 class WearDashletSyncer constructor(private val context: Context) {

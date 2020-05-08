@@ -10,7 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import kotlinx.android.synthetic.main.main_fragment.*
 import y2k.dash.R
-import y2k.dash.data.Dashlet
+import y2k.dash.shared.DashletViewModel
+import y2k.dash.shared.data.Dashlet
 import y2k.dash.utils.WearDashletSyncer
 
 class MainFragment : Fragment() {

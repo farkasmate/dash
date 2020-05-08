@@ -1,11 +1,11 @@
-package y2k.dash.data
+package y2k.dash.shared.data
 
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
-import y2k.dash.utils.RequestQueueSingleton
+import y2k.dash.shared.utils.RequestQueueSingleton
 import java.net.URI
 
 class DashletRepository(private val dao: DashletDao, private val requestQueue: RequestQueueSingleton, private val viewModelScope: CoroutineScope) {
