@@ -1,16 +1,17 @@
 package y2k.dash.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import kotlinx.android.synthetic.main.main_fragment.*
 import y2k.dash.R
 import y2k.dash.data.Dashlet
+import y2k.dash.utils.WearDashletSyncer
 
 class MainFragment : Fragment() {
     companion object {
@@ -19,17 +20,19 @@ class MainFragment : Fragment() {
 
     private val viewModel by activityViewModels<DashletViewModel>()
     private var viewAdapter: DashletAdapter = DashletAdapter()
+    private lateinit var wearSyncer: WearDashletSyncer
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        wearSyncer = WearDashletSyncer.getInstance(requireContext())
         viewModel.dashlets.observe(viewLifecycleOwner, Observer { dashlets ->
             viewAdapter.setDashlets(dashlets)
+            wearSyncer.sync(dashlets)
         })
 
         recyclerView.setHasFixedSize(true)
