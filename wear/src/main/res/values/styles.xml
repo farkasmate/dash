@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/accentColor</item>
+
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="swipeRefreshLayoutProgressSpinnerBackgroundColor">@color/primaryDarkColor</item>
+
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="DashletTheme" parent="AppTheme">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="TitleAppearance" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/primaryDarkColor</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+    </style>
+
+    <style name="MessageAppearance" parent="@style/TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+    </style>
+</resources>

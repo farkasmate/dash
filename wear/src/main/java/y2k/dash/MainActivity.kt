@@ -2,23 +2,25 @@ package y2k.dash
 
 import android.os.Bundle
 import android.support.wearable.activity.WearableActivity
+import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.wearable.Wearable
-import kotlinx.android.synthetic.main.activity_main.*
 import y2k.dash.shared.DashletDataListener
 
-class MainActivity : WearableActivity() {
+class MainActivity : FragmentActivity() {
     private val dataListener: DashletDataListener = DashletDataListener()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Enables Always-on
-        setAmbientEnabled()
-
-        dataListener.onUpdate { str ->
-            text.text = str
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, MainFragment.newInstance(dataListener))
+                    .commitNow()
         }
+
+        // Enables Always-on
+        //setAmbientEnabled()
     }
 
     override fun onResume() {
