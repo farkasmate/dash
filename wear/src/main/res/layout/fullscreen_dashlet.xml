@@ -1,41 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.wear.widget.BoxInsetLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dashlet_background">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:boxedEdges="all">
+        android:layout_weight="25"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="45dp"
+        android:paddingEnd="45dp"
+        android:elevation="6dp"
+        android:background="@color/secondaryColor">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/titleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="32sp"
-            android:text="@string/title"
             style="@style/TitleAppearance"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="8sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title"
             app:autoSizeMaxTextSize="24sp"
-            app:autoSizeStepGranularity="8sp"/>
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:paddingTop="15dp"
+        android:paddingBottom="25dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:elevation="0dp"
+        android:background="@color/secondaryDarkColor">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/messageTextView"
+            style="@style/MessageAppearance"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/message"
             android:breakStrategy="balanced"
-            style="@style/MessageAppearance"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="8sp"
+            android:text="@string/message"
             app:autoSizeMaxTextSize="48sp"
-            app:autoSizeStepGranularity="4sp"/>
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-</androidx.wear.widget.BoxInsetLayout>
+</LinearLayout>
