@@ -1,4 +1,4 @@
-package y2k.dash
+package y2k.dash.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearSnapHelper
 import kotlinx.android.synthetic.main.main_fragment.*
+import y2k.dash.R
 import y2k.dash.shared.DashletDataListener
 import y2k.dash.shared.DashletViewModel
 

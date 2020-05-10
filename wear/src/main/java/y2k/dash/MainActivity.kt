@@ -1,10 +1,10 @@
 package y2k.dash
 
 import android.os.Bundle
-import android.support.wearable.activity.WearableActivity
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.wearable.Wearable
 import y2k.dash.shared.DashletDataListener
+import y2k.dash.ui.main.MainFragment
 
 class MainActivity : FragmentActivity() {
     private val dataListener: DashletDataListener = DashletDataListener()

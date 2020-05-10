@@ -1,10 +1,11 @@
-package y2k.dash
+package y2k.dash.ui.main
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fullscreen_dashlet.view.*
+import y2k.dash.R
 import y2k.dash.shared.data.Dashlet
 
 class DashletAdapter : RecyclerView.Adapter<DashletAdapter.ViewHolder>() {
