@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+    <style name="AppTheme" parent="Theme.Wearable">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
@@ -26,4 +26,5 @@
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:gravity">center_horizontal|center_vertical</item>
     </style>
+
 </resources>
