@@ -6,5 +6,9 @@ services:
     image: matefarkas/dash-pipeline
     environment:
       SUPPLY_JSON_KEY_DATA: ${SUPPLY_JSON_KEY_DATA}
+      JKS_STORE_BASE64:     ${JKS_STORE_BASE64}
+      JKS_STORE_PASSWORD:   ${JKS_STORE_PASSWORD}
+      JKS_KEY_ALIAS:        ${JKS_KEY_ALIAS}
+      JKS_KEY_PASSWORD:     ${JKS_KEY_PASSWORD}
     volumes:
       - .:/build/:rw
