@@ -13,3 +13,9 @@ jobs:
 
       - name: Run Fastlane
         uses: ./.github/actions/dash-pipeline
+        with:
+          jks_store_base64:     ${{ secrets.jks_store_base64 }}
+          jks_store_password:   ${{ secrets.jks_store_password }}
+          jks_key_alias:        ${{ secrets.jks_key_alias }}
+          jks_key_password:     ${{ secrets.jks_key_password }}
+          supply_json_key_data: ${{ secrets.supply_json_key_data }}

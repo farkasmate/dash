@@ -7,7 +7,6 @@ fi
 
 if [ "${GITHUB_WORKSPACE}" ]
 then
-  export HOME=/home/gradle
   cd ${GITHUB_WORKSPACE}
 fi
 

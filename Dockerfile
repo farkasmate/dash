@@ -44,18 +44,17 @@ RUN apt-get -y update && \
     apt-get install -y ruby && \
     gem install bundler -v '~> 1' && \
     ln -s /usr/lib/x86_64-linux-gnu/libruby-2.5.so.2.5 /lib/x86_64-linux-gnu/libruby.so.2.5 && \
-    useradd --create-home --shell /bin/bash gradle
+    rm -rf /var/lib/apt/lists/*
 
 ENV GEM_HOME=/usr/local/bundle
 
 COPY --from=android /android /android
-COPY --from=android --chown=gradle:gradle /root/.gradle /home/gradle/.gradle
+COPY --from=android /root/.gradle /root/.gradle
 
 COPY --from=fastlane /usr/local/bundle /usr/local/bundle
 
 ADD entrypoint.sh /entrypoint.sh
 
-USER gradle:gradle
 WORKDIR /build/
 
 ENTRYPOINT ["/entrypoint.sh"]
