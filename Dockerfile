@@ -53,7 +53,9 @@ COPY --from=android --chown=gradle:gradle /root/.gradle /home/gradle/.gradle
 
 COPY --from=fastlane /usr/local/bundle /usr/local/bundle
 
+ADD entrypoint.sh /entrypoint.sh
+
 USER gradle:gradle
 WORKDIR /build/
 
-CMD bundle exec fastlane test
+ENTRYPOINT ["/entrypoint.sh"]
