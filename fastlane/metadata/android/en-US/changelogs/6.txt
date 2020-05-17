@@ -1,0 +1,4 @@
+# 1.3
+- Apply theme on spinner
+- Fix swipe animation
+- Fix Fastlane pipeline

@@ -1,7 +1,9 @@
-# vim: set syntax=ruby
+# vim: set syntax=ruby:
 
-skip_docs
+require 'base64'
+
 opt_out_usage
+skip_docs
 
 default_platform(:android)
 
@@ -13,7 +15,26 @@ platform :android do
 
   desc 'Submit a new Beta Build to Google Play'
   lane :beta do
-    gradle(task: 'assemble', build_type: 'Release')
-    upload_to_play_store(track: 'beta')
+    Tempfile.create('jks') do |jks|
+      jks.write(Base64.decode64(ENV['JKS_STORE_BASE64']))
+      jks.rewind
+
+      gradle(
+        task: 'bundle',
+        build_type: 'Release',
+        print_command: false,
+        properties: {
+          'android.injected.signing.store.file'     => jks.path,
+          'android.injected.signing.store.password' => ENV['JKS_STORE_PASSWORD'],
+          'android.injected.signing.key.alias'      => ENV['JKS_KEY_ALIAS'],
+          'android.injected.signing.key.password'   => ENV['JKS_KEY_PASSWORD'],
+        },
+      )
+    end
+
+    upload_to_play_store(
+      track: 'beta',
+      validate_only: ENV['RELEASE'] == 'true' ? false : true,
+    )
   end
 end
