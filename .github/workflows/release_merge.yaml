@@ -1,0 +1,22 @@
+name: release
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Release beta with Fastlane
+        uses: ./.github/actions/dash-pipeline
+        with:
+          jks_store_base64:     ${{ secrets.jks_store_base64 }}
+          jks_store_password:   ${{ secrets.jks_store_password }}
+          jks_key_alias:        dash
+          jks_key_password:     ${{ secrets.jks_key_password }}
+          release:              'true'
+          supply_json_key_data: ${{ secrets.supply_json_key_data }}
