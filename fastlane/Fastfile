@@ -34,7 +34,7 @@ platform :android do
 
     upload_to_play_store(
       track: 'beta',
-      validate_only: true,
+      validate_only: ENV['RELEASE'] == 'true' ? false : true,
     )
   end
 end

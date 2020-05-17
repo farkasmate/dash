@@ -1,27 +1,35 @@
-name: 'Dash pipeline'
-description: 'Run Fastlane pipeline for Dash'
+name: Dash pipeline
+
+description: Run Fastlane pipeline for Dash
+
 inputs:
   jks_store_base64:
-    description: 'Base64 encoded Java Keystore'
+    description: Base64 encoded Java Keystore
     required: true
   jks_store_password:
-    description: 'Keystore password'
+    description: Keystore password
     required: true
   jks_key_alias:
-    description: 'Key alias to use for signing'
+    description: Key alias to use for signing
     required: true
   jks_key_password:
-    description: 'Password for the signing key'
+    description: Password for the signing key
     required: true
+  release:
+    description: Deploy beta release to Google Play
+    required: false
+    default: 'false'
   supply_json_key_data:
-    description: 'Fastlane secret for supply action'
+    description: Fastlane secret for supply action
     required: true
+
 runs:
-  using: 'docker'
-  image: 'docker://matefarkas/dash-pipeline:latest'
+  using: docker
+  image: docker://matefarkas/dash-pipeline:latest
   env:
     JKS_STORE_BASE64:     ${{ inputs.jks_store_base64 }}
     JKS_STORE_PASSWORD:   ${{ inputs.jks_store_password }}
     JKS_KEY_ALIAS:        ${{ inputs.jks_key_alias }}
     JKS_KEY_PASSWORD:     ${{ inputs.jks_key_password }}
+    RELEASE:              ${{ inputs.release }}
     SUPPLY_JSON_KEY_DATA: ${{ inputs.supply_json_key_data }}

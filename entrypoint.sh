@@ -1,13 +1,21 @@
 #!/bin/sh -e
 
-if [ "${1}" = 'debug' ]
-then
-  exec bash
-fi
+case "${1}" in
+  debug)
+    exec bash
+    ;;
+
+  test)
+    LANE=test
+    ;;
+
+  *)
+    LANE=beta
+esac
 
 if [ "${GITHUB_WORKSPACE}" ]
 then
   cd ${GITHUB_WORKSPACE}
 fi
 
-exec bundle exec fastlane beta
+exec bundle exec fastlane ${LANE}
