@@ -15,6 +15,7 @@ class RequestQueueSingleton constructor(context: Context) {
         }
     }
 
+    private val _requestTag = "RequestQueueSingleton"
     private val requestQueue: RequestQueue = Volley.newRequestQueue(context.applicationContext)
 
     private var onFinishedListener: (() -> Unit)? = null
@@ -29,8 +30,15 @@ class RequestQueueSingleton constructor(context: Context) {
     }
 
     fun <T> add(request: Request<T>) {
+        request.tag = _requestTag
         requestQueue.add(request)
         lastSequence = request.sequence
+    }
+
+    fun cancelAll() {
+        lastSequence = 0
+        onFinishedListener?.invoke()
+        requestQueue.cancelAll(_requestTag)
     }
 
     fun setOnFinishedListener(listener: () -> Unit) {
