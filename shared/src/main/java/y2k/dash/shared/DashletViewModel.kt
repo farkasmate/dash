@@ -35,7 +35,15 @@ class DashletViewModel(application: Application) : AndroidViewModel(application)
 
     fun addDashlet(dashlet: Dashlet) = repo.insert(dashlet)
     fun moveDashlet(from: Int, to: Int) = repo.moveDashlet(from, to)
-    fun refreshDashlets() = dashlets.value?.forEach { dashlet -> repo.refreshDashlet(dashlet) }
+
+    fun refreshDashlets() {
+        if (dashlets.value.isNullOrEmpty()) {
+            requestQueue.onFinished()
+            return
+        }
+
+        dashlets.value?.forEach { dashlet -> repo.refreshDashlet(dashlet) }
+    }
     fun cancelRefresh() = requestQueue.cancelAll()
 
     fun setOnRefreshFinishedListener(listener: () -> Unit) = requestQueue.setOnFinishedListener { listener() }

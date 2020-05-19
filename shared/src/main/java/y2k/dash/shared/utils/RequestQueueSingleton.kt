@@ -26,7 +26,7 @@ class RequestQueueSingleton constructor(context: Context) {
     init {
         requestQueue.addRequestFinishedListener<Unit> { request ->
             if (request?.sequence == lastSequence) {
-                onFinishedListener?.invoke()
+                onFinished()
             }
         }
     }
@@ -46,4 +46,6 @@ class RequestQueueSingleton constructor(context: Context) {
     fun setOnFinishedListener(listener: () -> Unit) {
         onFinishedListener = listener
     }
+
+    fun onFinished() = onFinishedListener?.invoke()
 }
