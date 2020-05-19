@@ -1,5 +1,6 @@
 package y2k.dash.shared.data
 
+import android.util.Log
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +38,7 @@ class DashletRepository(private val dao: DashletDao, private val requestQueue: R
                 },
                 Response.ErrorListener {
                     dashlet.message = "Update failed"
+                    Log.e("y2k.dash", "refreshDashlet failed: $it")
                     viewModelScope.launch { update(dashlet) }
                 }
         )

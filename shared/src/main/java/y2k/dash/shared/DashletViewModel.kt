@@ -33,19 +33,10 @@ class DashletViewModel(application: Application) : AndroidViewModel(application)
         repo.insert(Dashlet("setting://test/8", "Test 8", "8"))
     }
 
-    fun addDashlet(dashlet: Dashlet) {
-        repo.insert(dashlet)
-    }
+    fun addDashlet(dashlet: Dashlet) = repo.insert(dashlet)
+    fun moveDashlet(from: Int, to: Int) = repo.moveDashlet(from, to)
+    fun refreshDashlets() = dashlets.value?.forEach { dashlet -> repo.refreshDashlet(dashlet) }
+    fun cancelRefresh() = requestQueue.cancelAll()
 
-    fun refreshDashlets() {
-        dashlets.value?.forEach { dashlet -> repo.refreshDashlet(dashlet) }
-    }
-
-    fun setOnRefreshFinishedListener(listener: () -> Unit) {
-        requestQueue.setOnFinishedListener { listener() }
-    }
-
-    fun moveDashlet(from: Int, to: Int) {
-        repo.moveDashlet(from, to)
-    }
+    fun setOnRefreshFinishedListener(listener: () -> Unit) = requestQueue.setOnFinishedListener { listener() }
 }

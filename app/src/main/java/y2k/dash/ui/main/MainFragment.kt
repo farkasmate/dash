@@ -40,7 +40,7 @@ class MainFragment : Fragment() {
         recyclerView.adapter = viewAdapter
 
         swipe.setOnRefreshListener { viewModel.refreshDashlets() }
-        viewModel.setOnRefreshFinishedListener { swipe.isRefreshing = false }
+        viewModel.setOnRefreshFinishedListener { swipe?.isRefreshing = false }
 
         val touchHelper = ItemTouchHelper(DashletTouchHelper(viewModel))
         touchHelper.attachToRecyclerView(recyclerView)
@@ -55,5 +55,10 @@ class MainFragment : Fragment() {
             viewModel.addDashlet(Dashlet(url = url, title = "new dashlet", message = "loading..."))
             activity?.intent?.data = null
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.cancelRefresh()
     }
 }

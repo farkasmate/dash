@@ -36,7 +36,7 @@ class MainFragment(private val dataListener: DashletDataListener) : Fragment() {
         recyclerView.adapter = viewAdapter
 
         swipe.setOnRefreshListener { viewModel.refreshDashlets() }
-        viewModel.setOnRefreshFinishedListener { swipe.isRefreshing = false }
+        viewModel.setOnRefreshFinishedListener { swipe?.isRefreshing = false }
 
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
@@ -45,5 +45,10 @@ class MainFragment(private val dataListener: DashletDataListener) : Fragment() {
             // FIXME: Insert/Update?
             viewModel.addDashlet(dashlet)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.cancelRefresh()
     }
 }
