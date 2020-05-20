@@ -10,13 +10,14 @@ class RequestQueueSingleton constructor(context: Context) {
         @Volatile
         private var INSTANCE: RequestQueueSingleton? = null
 
-        fun getInstance(context: Context) = INSTANCE ?: synchronized(this) {
-            INSTANCE ?: RequestQueueSingleton(context)
-        }
+        fun getInstance(context: Context): RequestQueueSingleton =
+                INSTANCE ?: synchronized(this) {
+                    INSTANCE ?: RequestQueueSingleton(context).also { INSTANCE = it }
+                }
     }
 
     private val _requestTag = "RequestQueueSingleton"
-    private val requestQueue: RequestQueue = Volley.newRequestQueue(context.applicationContext)
+    private val requestQueue: RequestQueue by lazy { Volley.newRequestQueue(context.applicationContext) }
 
     private var onFinishedListener: (() -> Unit)? = null
     private var lastSequence: Int = 0

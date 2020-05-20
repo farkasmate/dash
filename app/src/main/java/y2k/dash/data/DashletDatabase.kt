@@ -13,20 +13,16 @@ abstract class DashletDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: DashletDatabase? = null
 
-        fun getInstance(context: Context): DashletDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this) {
-                val instance = Room.databaseBuilder(
+        fun getInstance(context: Context): DashletDatabase =
+                INSTANCE ?: synchronized(this) {
+                    INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+                }
+
+        private fun buildDatabase(context: Context) =
+                Room.databaseBuilder(
                         context.applicationContext,
                         DashletDatabase::class.java,
                         "Dashlet"
                 ).addMigrations(*Migrations.all).build()
-                INSTANCE = instance
-                return instance
-            }
-        }
     }
 }
