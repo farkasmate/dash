@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DashletTouchHelper(private val viewModel: DashletViewModel) : ItemTouchHelper.SimpleCallback(
         ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT,
-        ItemTouchHelper.RIGHT
+        0
 ) {
     private var startingPosition: Int? = null
     private var endPosition: Int? = null
@@ -49,9 +49,4 @@ class DashletTouchHelper(private val viewModel: DashletViewModel) : ItemTouchHel
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {}
-
-    // Never dismiss.
-    override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float = Float.MAX_VALUE
-    override fun getSwipeVelocityThreshold(defaultValue: Float): Float = Float.MAX_VALUE
-    override fun getSwipeEscapeVelocity(defaultValue: Float): Float = Float.MAX_VALUE
 }

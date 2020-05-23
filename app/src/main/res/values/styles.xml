@@ -26,4 +26,5 @@
     <style name="MessageAppearance" parent="@style/TextAppearance.MaterialComponents.Headline6">
         <item name="color">@color/primaryTextColor</item>
     </style>
+
 </resources>
