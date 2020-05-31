@@ -1,10 +1,16 @@
 <component name="ProjectDictionaryState">
   <dictionary name="matefarkas">
     <words>
+      <w>anko</w>
+      <w>constraintlayout</w>
       <w>dashlet</w>
       <w>dashlets</w>
+      <w>kapt</w>
+      <w>livedata</w>
       <w>rowid</w>
       <w>sqls</w>
+      <w>swiperefreshlayout</w>
+      <w>viewmodel</w>
     </words>
   </dictionary>
 </component>
