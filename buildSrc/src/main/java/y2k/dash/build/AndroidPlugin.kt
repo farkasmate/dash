@@ -6,13 +6,22 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
+import java.io.File
 
 class AndroidPlugin : Plugin<Project> {
+    private val parser = ChangelogParser("fastlane/metadata/android/en-US/changelogs")
+
     override fun apply(project: Project) {
         project.configurePlugins()
-        project.configureAndroid()
+        project.configureAndroid(parser.versionCode!!, parser.versionName)
         project.configureKapt()
         project.configureDependencies()
+    }
+
+    private class ChangelogParser(path: String) {
+        val changelogDirectory = File(path)
+        val versionCode = changelogDirectory.listFiles()?.map { it.nameWithoutExtension.toInt() }?.max()
+        val versionName = File(changelogDirectory, "${versionCode}.txt").useLines { it.first() }.removePrefix("# ")
     }
 }
 
@@ -66,25 +75,27 @@ private fun Project.configurePlugins() {
     plugins.apply("kotlin-kapt")
 }
 
-private fun Project.configureAndroid() = this.extensions.getByType<BaseExtension>().run {
-    compileSdkVersion(29) // Q
-    defaultConfig {
-        applicationId = "y2k.dash"
-        minSdkVersion(21) // LOLLIPOP
-        targetSdkVersion(29) // Q
-        versionCode = 6
-        versionName = "1.3"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+private fun Project.configureAndroid(parsedVersionCode: Int, parsedVersionName: String) {
+    this.extensions.getByType<BaseExtension>().run {
+        compileSdkVersion(29) // Q
+        defaultConfig {
+            applicationId = "y2k.dash"
+            minSdkVersion(21) // LOLLIPOP
+            targetSdkVersion(29) // Q
+            versionCode = parsedVersionCode
+            versionName = parsedVersionName
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
-    }
+        buildTypes {
+            getByName("release") {
+                isMinifyEnabled = false
+                proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            }
+        }
 //    kotlinOptions {
 //        jvmTarget = JavaVersion.VERSION_1_8.toString()
 //    }
+    }
 }
 
 private fun Project.configureKapt() = this.extensions.getByType<KaptExtension>().run {

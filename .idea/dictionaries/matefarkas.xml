@@ -2,9 +2,11 @@
   <dictionary name="matefarkas">
     <words>
       <w>anko</w>
+      <w>changelogs</w>
       <w>constraintlayout</w>
       <w>dashlet</w>
       <w>dashlets</w>
+      <w>fastlane</w>
       <w>kapt</w>
       <w>livedata</w>
       <w>rowid</w>
