@@ -30,7 +30,6 @@ Run before invoking the pipeline:
 
 ```
 export RELEASE=true
-
 ```
 
 ### On GitHub
