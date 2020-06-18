@@ -9,7 +9,7 @@ class AndroidPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         project.configurePlugins()
-        project.configureAndroid(parser.versionCode!!, parser.versionName)
+        project.configureAndroid(parser.versionCode, parser.versionName)
         project.configureKapt()
         project.configureDependencies()
     }
