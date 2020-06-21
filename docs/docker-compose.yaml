@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  sass:
+    build:
+      context: .
+      dockerfile: _precompile/Dockerfile
+    image: matefarkas/dash-sass
+    user: ${RUN_AS}
+    volumes:
+      - .:/build/:rw
