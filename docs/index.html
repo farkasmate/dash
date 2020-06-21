@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<div class="flex-grid">
+  {% for dashlet in site.data.dashlets %}
+    <div class="col">
+      <div class="dashlet" onclick="dashlet('{{ dashlet.url }}')">
+        <div class="mdc-card__primary-action" tabindex="0">
+          <div class="dashlet-content">
+            <div class="dashlet-title">{{ dashlet.title | escape }}</div>
+            <div class="dashlet-message">{{ dashlet.message | escape }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

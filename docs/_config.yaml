@@ -1,0 +1,13 @@
+title: DASH
+description: >-
+  Dashboard for Android
+  - Keep track of bits of information
+
+theme: jekyll-theme-hacker
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - docker-compose.yaml
+  - package.json
