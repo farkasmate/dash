@@ -2,6 +2,12 @@
 layout: default
 ---
 
+<script>
+function dashlet(url) {
+  window.location.href = url.replace(/^http(s)?:\/\//, "dashlet://");
+}
+</script>
+
 <div class="flex-grid">
   {% for dashlet in site.data.dashlets %}
     <div class="col">
