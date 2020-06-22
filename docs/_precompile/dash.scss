@@ -11,7 +11,12 @@
   @include card.shape-radius(5px, true);
 
   color: black;
-  max-width: 400px;
+  min-width: 200px;
+  height: 100%;
+
+  .mdc-card__primary-action {
+    height: inherit;
+  }
 }
 
 .dashlet-content {
