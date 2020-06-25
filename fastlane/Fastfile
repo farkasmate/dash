@@ -32,6 +32,8 @@ platform :android do
       )
     end
 
+    Dir.chdir('..') { sh('java', '-jar', 'buildSrc/build/libs/fastlaneChangelogGenerator.jar') }
+
     upload_to_play_store(
       track: 'beta',
       validate_only: ENV['RELEASE'] == 'true' ? false : true,

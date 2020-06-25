@@ -17,7 +17,7 @@ internal class ChangelogParserTest {
         File(tempDir, "2.3.txt").createNewFile()
         File(tempDir, "10.11.txt").createNewFile()
 
-        parser = ChangelogParser(tempDir.absolutePath)
+        parser = ChangelogParser(tempDir)
     }
 
     @Test

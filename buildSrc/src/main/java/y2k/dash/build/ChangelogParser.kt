@@ -3,9 +3,10 @@ package y2k.dash.build
 import java.io.File
 import java.lang.Exception
 
-class ChangelogParser(path: String) {
-    private val changelogDirectory = File(path)
+class ChangelogParser(changelogDirectory: File) {
     private val version: Version
+
+    val changelogFile: File
 
     init {
         val files = changelogDirectory.listFiles()
@@ -13,6 +14,8 @@ class ChangelogParser(path: String) {
 
         val versions = files.map { Version(it.nameWithoutExtension) }
         version = versions.max()!!
+
+        changelogFile = files.filter { file -> file.name == "${version.major}.${version.minor}.txt" }.first()
     }
 
     val versionCode = version.toInt()

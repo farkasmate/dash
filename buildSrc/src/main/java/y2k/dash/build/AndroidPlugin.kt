@@ -5,7 +5,7 @@ import org.gradle.api.Project
 import y2k.dash.build.project.*
 
 class AndroidPlugin : Plugin<Project> {
-    private val parser = ChangelogParser("fastlane/metadata/android/en-US/changelogs")
+    private val parser = ChangelogParser(Settings.changelogDirectory)
 
     override fun apply(project: Project) {
         project.configurePlugins()
