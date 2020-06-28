@@ -10,5 +10,6 @@
 /.idea/workspace.xml
 /build
 /captures
+/fastlane/metadata/android/en-US/changelogs/*.txt
 /fastlane/report.xml
 /local.properties

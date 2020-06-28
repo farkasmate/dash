@@ -34,7 +34,7 @@ export RELEASE=true
 
 ### On GitHub
 
-1. Add new changelog to `fastlane/metadata/android/en-US/changelogs/<versionCode>.txt`
+1. Add new changelog to `fastlane/metadata/android/en-US/changelogs/tags/<major>.<minor>.txt`
 2. Create a PR to the `release` branch
 3. Wait for the automatic test
 4. Merge if test is green

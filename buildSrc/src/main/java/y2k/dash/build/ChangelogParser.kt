@@ -15,7 +15,7 @@ class ChangelogParser(changelogDirectory: File) {
         val versions = files.map { Version(it.nameWithoutExtension) }
         version = versions.max()!!
 
-        changelogFile = files.filter { file -> file.name == "${version.major}.${version.minor}.txt" }.first()
+        changelogFile = files.first { file -> file.name == "${version.major}.${version.minor}.txt" }
     }
 
     val versionCode = version.toInt()

@@ -5,7 +5,7 @@ import org.gradle.api.Project
 import y2k.dash.build.project.*
 
 class AndroidPlugin : Plugin<Project> {
-    private val parser = ChangelogParser(Settings.changelogDirectory)
+    private val parser = ChangelogParser(Settings.tagsDirectory)
 
     override fun apply(project: Project) {
         project.configurePlugins()

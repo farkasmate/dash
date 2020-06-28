@@ -32,7 +32,7 @@ platform :android do
       )
     end
 
-    Dir.chdir('..') { sh('java', '-jar', 'buildSrc/build/libs/fastlaneChangelogGenerator.jar') }
+    gradle(task: 'generateChangelogs')
 
     upload_to_play_store(
       track: 'beta',
