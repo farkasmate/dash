@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+import y2k.dash.build.ChangelogGeneratorTask
 
 buildscript {
     repositories {
@@ -24,3 +25,5 @@ allprojects {
 task<Delete>("clean") {
     delete(rootProject.buildDir)
 }
+
+tasks.register<ChangelogGeneratorTask>("generateChangelogs")
