@@ -19,7 +19,6 @@ const val roomKtx               = "androidx.room:room-ktx:${roomVersion}"
 const val roomRuntime           = "androidx.room:room-runtime:${roomVersion}"
 const val swipeRefreshLayout    = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01"
 const val volley                = "com.android.volley:volley:1.1.1"
-const val ankoCommons           = "org.jetbrains.anko:anko-commons:0.10.5"
 const val roomCompiler          = "androidx.room:room-compiler:${roomVersion}"
 const val junit                 = "junit:junit:4.12"
 
@@ -39,7 +38,6 @@ internal fun Project.configureDependencies() = dependencies {
     add("implementation", roomRuntime)
     add("implementation", swipeRefreshLayout)
     add("implementation", volley)
-    add("implementation", ankoCommons)
 
     add("kapt", roomCompiler)
 
