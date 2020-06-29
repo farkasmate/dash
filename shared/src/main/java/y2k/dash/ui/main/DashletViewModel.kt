@@ -2,7 +2,6 @@ package y2k.dash.ui.main
 
 import android.app.Application
 import androidx.lifecycle.*
-import kotlinx.coroutines.launch
 import y2k.dash.data.Dashlet
 import y2k.dash.data.DashletDatabase
 import y2k.dash.data.DashletRepository
