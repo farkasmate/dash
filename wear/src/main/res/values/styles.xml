@@ -1,0 +1,17 @@
+<resources>
+
+    <style name="DashletTheme" parent="AppTheme">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="TitleAppearance" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/secondaryDimTextColor</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+    </style>
+
+    <style name="MessageAppearance" parent="@style/TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+    </style>
+
+</resources>

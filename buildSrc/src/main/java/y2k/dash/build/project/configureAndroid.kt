@@ -8,7 +8,6 @@ internal fun Project.configureAndroid(parsedVersionCode: Int, parsedVersionName:
     this.extensions.getByType<BaseExtension>().run {
         compileSdkVersion(29) // Q
         defaultConfig {
-            applicationId = "y2k.dash"
             minSdkVersion(21) // LOLLIPOP
             targetSdkVersion(29) // Q
             versionCode = parsedVersionCode
