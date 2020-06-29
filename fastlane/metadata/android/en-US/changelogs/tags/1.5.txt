@@ -1,0 +1,4 @@
+# 1.5
+- Add docs (https://farkasmate.github.io/dash/)
+- Add build plugin
+- Add wearable app
