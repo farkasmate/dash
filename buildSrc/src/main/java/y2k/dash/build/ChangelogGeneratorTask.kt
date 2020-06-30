@@ -5,7 +5,7 @@ import org.gradle.api.tasks.TaskAction
 import java.io.File
 
 open class ChangelogGeneratorTask : DefaultTask() {
-    private val parser = ChangelogParser(Settings.tagsDirectory)
+    private val parser = ChangelogParser(Settings.tagsDirectory, BuildFlavor.SHARED)
 
     @TaskAction
     fun generate() {

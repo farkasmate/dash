@@ -7,22 +7,35 @@ import org.junit.jupiter.api.io.TempDir
 import java.io.File
 
 internal class ChangelogParserTest {
-
-    private lateinit var parser: ChangelogParser
+    @TempDir
+    lateinit var tempDir: File
 
     @BeforeEach
-    fun setUp(@TempDir tempDir: File) {
+    fun setUp() {
         File(tempDir, "1.0.txt").createNewFile()
         File(tempDir, "1.1.txt").createNewFile()
         File(tempDir, "2.3.txt").createNewFile()
         File(tempDir, "10.11.txt").createNewFile()
-
-        parser = ChangelogParser(tempDir)
     }
 
     @Test
-    fun parses_versionCode() = assertEquals(1011, parser.versionCode)
+    fun sharedVersion() {
+        val parser = ChangelogParser(tempDir, BuildFlavor.SHARED)
+        assertEquals(10110, parser.versionCode)
+        assertEquals("10.11", parser.versionName)
+    }
 
     @Test
-    fun parses_versionName() = assertEquals("10.11", parser.versionName)
+    fun appVersion() {
+        val parser = ChangelogParser(tempDir, BuildFlavor.APP)
+        assertEquals(10111, parser.versionCode)
+        assertEquals("10.11", parser.versionName)
+    }
+
+    @Test
+    fun wearVersion() {
+        val parser = ChangelogParser(tempDir, BuildFlavor.WEAR)
+        assertEquals(10112, parser.versionCode)
+        assertEquals("10.11", parser.versionName)
+    }
 }
