@@ -21,10 +21,12 @@ const val swipeRefreshLayout    = "androidx.swiperefreshlayout:swiperefreshlayou
 const val volley                = "com.android.volley:volley:1.1.1"
 const val roomCompiler          = "androidx.room:room-compiler:${roomVersion}"
 const val junit                 = "junit:junit:4.12"
+const val junitExt              = "androidx.test.ext:junit:1.1.1"
 
 internal fun Project.configureDependencies() = dependencies {
     add("androidTestImplementation", espresso)
     add("androidTestImplementation", runner)
+    add("androidTestImplementation", junitExt)
 
     add("api", material)
 
