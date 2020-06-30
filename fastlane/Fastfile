@@ -36,6 +36,7 @@ platform :android do
 
     upload_to_play_store(
       track: 'beta',
+      aab_paths: lane_context[SharedValues::GRADLE_ALL_AAB_OUTPUT_PATHS],
       validate_only: ENV['RELEASE'] == 'true' ? false : true,
     )
   end
