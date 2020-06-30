@@ -1,4 +1,4 @@
-package y2k.dash.ui.main
+package y2k.dash.shared.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,8 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import kotlinx.android.synthetic.main.main_fragment.*
-import y2k.dash.R
-import y2k.dash.data.Dashlet
+import y2k.dash.shared.R
+import y2k.dash.shared.data.Dashlet
 
 class MainFragment : Fragment() {
     companion object {

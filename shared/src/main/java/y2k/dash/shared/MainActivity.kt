@@ -1,8 +1,8 @@
-package y2k.dash
+package y2k.dash.shared
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import y2k.dash.ui.main.MainFragment
+import y2k.dash.shared.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package y2k.dash.ui.main
+package y2k.dash.shared.ui.main
 
 import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper

@@ -1,4 +1,4 @@
-package y2k.dash
+package y2k.dash.shared
 
 import org.junit.Test
 

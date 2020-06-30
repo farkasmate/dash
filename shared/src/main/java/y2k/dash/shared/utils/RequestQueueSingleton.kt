@@ -1,4 +1,4 @@
-package y2k.dash.utils
+package y2k.dash.shared.utils
 
 import android.content.Context
 import com.android.volley.Request

@@ -22,7 +22,7 @@ package="y2k.dash">
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".shared.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

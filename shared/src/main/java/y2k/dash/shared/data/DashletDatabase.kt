@@ -1,4 +1,4 @@
-package y2k.dash.data
+package y2k.dash.shared.data
 
 import android.content.Context
 import androidx.room.Database

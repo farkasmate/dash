@@ -1,11 +1,11 @@
-package y2k.dash.ui.main
+package y2k.dash.shared.ui.main
 
 import android.app.Application
 import androidx.lifecycle.*
-import y2k.dash.data.Dashlet
-import y2k.dash.data.DashletDatabase
-import y2k.dash.data.DashletRepository
-import y2k.dash.utils.RequestQueueSingleton
+import y2k.dash.shared.data.Dashlet
+import y2k.dash.shared.data.DashletDatabase
+import y2k.dash.shared.data.DashletRepository
+import y2k.dash.shared.utils.RequestQueueSingleton
 
 // FIXME: Remove Application reference from ViewModel
 class DashletViewModel(application: Application) : AndroidViewModel(application) {
