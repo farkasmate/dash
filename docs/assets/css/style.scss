@@ -1,0 +1,42 @@
+---
+---
+@import "{{ site.theme }}";
+
+@import "colors";
+@import "dash.css";
+
+#downloads {
+  display: none;
+}
+
+header {
+  border-bottom: 1px solid $primaryColor;
+}
+
+header h1 {
+  color: $primaryColor;
+  margin: 0;
+}
+
+header h1:before {
+  content: "";
+}
+
+header h2 {
+  margin: 0;
+}
+
+.flex-grid {
+  display: flex;
+}
+
+.flex-grid .col {
+  flex: 1;
+  margin: 5px;
+}
+
+@media (max-width: 400px) {
+  .flex-grid {
+    display: block;
+  }
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="25"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="45dp"
+        android:paddingEnd="45dp"
+        android:elevation="6dp"
+        android:background="@color/secondaryColor">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/titleTextView"
+            style="@style/TitleAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/title"
+            app:autoSizeMaxTextSize="24sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:paddingTop="15dp"
+        android:paddingBottom="25dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:elevation="0dp"
+        android:background="@color/secondaryDarkColor">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/messageTextView"
+            style="@style/MessageAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:breakStrategy="balanced"
+            android:text="@string/message"
+            app:autoSizeMaxTextSize="48sp"
+            app:autoSizeMinTextSize="8sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform" />
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+@use "@material/card";
+
+@include card.core-styles;
+
+@import "colors";
+
+.dashlet {
+  @extend .mdc-card;
+
+  @include card.fill-color($primaryColor);
+  @include card.shape-radius(5px, true);
+
+  color: black;
+  max-width: 400px;
+}
+
+.dashlet-content {
+  padding: 10px;
+}
+
+.dashlet-title {}
+
+.dashlet-message {
+  font-size: larger;
+  font-weight: bold;
+}
