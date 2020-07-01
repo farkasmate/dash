@@ -1,4 +1,32 @@
-Dashboard for Android
+Dashboard for Android and Wear OS
+Track bits of information on your phone and watch.
+<br />
+
+- Do you need a glanceable dashboard to track arbitrary data?
+- Good.
+
+- Do you hate to check every week when the next F1 race starts in your timezone?
+- Me too.
+
+Good news: This app will track data morsels like this.
+Bad news: You have to make the data provider. But it's easy.
+
+The data format as follows:
+
+{
+  "title": "Is it XMAS?",
+  "message": "No"
+}
+
+To add a new card to the dashboard create a link for your service by replacing the "https" protocol by "dashlet":
+
+https://gist.githubusercontent.com/farkasmate/29226015007ec488284303230617245f/raw/42acd346348ebec2b3cfca4f9d522fca6b057ae1/xmas.json
+
+dashlet://gist.githubusercontent.com/farkasmate/29226015007ec488284303230617245f/raw/42acd346348ebec2b3cfca4f9d522fca6b057ae1/xmas.json
+
+Click the link on your device.
+
+Further use-cases:
 
 - Scoreboard
 - Build status

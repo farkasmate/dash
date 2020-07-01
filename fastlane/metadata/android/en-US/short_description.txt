@@ -1,1 +1,1 @@
-Dashboard for Android
+Dashboard for Android and Wear OS
